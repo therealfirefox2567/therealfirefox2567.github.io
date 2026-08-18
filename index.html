@@ -1,10 +1,231 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Minecraft</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0e27;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            color: #00ff00;
+        }
+
+        /* Animated background */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 3px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 4em;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #0000ff;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            color: #00ccff;
+            font-size: 1.5em;
+            text-shadow: 0 0 10px #00ccff;
+            margin-top: 10px;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 0, 1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid #00ff00;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 1), 0 0 30px rgba(0, 0, 255, 0.8);
+            background: rgba(0, 255, 0, 0.2);
+        }
+
+        .card h2 {
+            color: #00ff00;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .card p {
+            color: #00ccff;
+            line-height: 1.6;
+        }
+
+        .minecraft-block {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            border: 2px solid #00ff00;
+            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), inset 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .button {
+            background: linear-gradient(45deg, #00ff00, #00ccff);
+            color: #0a0e27;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .button:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 0, 1), 0 0 20px rgba(0, 0, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        .button:active {
+            transform: scale(0.95);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 2px solid #00ff00;
+            color: #00ccff;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+            margin-top: 60px;
+        }
+
+        .neon-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+            margin: 40px 0;
+            box-shadow: 0 0 10px #00ff00;
+        }
+    </style>
 </head>
 <body>
-  <h1>Hello World!</h1>
-  <p>This is my website.</p>
+    <div class="stars" id="stars"></div>
+
+    <header>
+        <h1>⛏️ NEON MINECRAFT ⛏️</h1>
+        <p class="subtitle">Welcome to the Digital Realm</p>
+    </header>
+
+    <div class="container">
+        <div class="neon-line"></div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>🔮 Blocks</h2>
+                <div class="minecraft-block"></div>
+                <p>Craft, build, and explore infinite worlds filled with neon energy and digital landscapes.</p>
+            </div>
+
+            <div class="card">
+                <h2>⚡ Power</h2>
+                <p>Experience the ultimate gaming adventure with glowing effects and cyberpunk aesthetics that push boundaries.</p>
+            </div>
+
+            <div class="card">
+                <h2>🎮 Mode</h2>
+                <p>Survival, Creative, or Adventure - choose your path in a neon-lit dimension where possibilities are endless.</p>
+            </div>
+        </div>
+
+        <div class="neon-line"></div>
+
+        <div style="text-align: center; margin: 60px 0;">
+            <h2 style="color: #00ff00; font-size: 2.5em; text-shadow: 0 0 20px #00ff00; margin-bottom: 30px;">
+                Ready to Enter?
+            </h2>
+            <button class="button">START MINING</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>✨ Built with Neon Energy | Powered by GitHub Pages ✨</p>
+    </footer>
+
+    <script>
+        // Create random stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Button click effect
+        document.querySelector('.button').addEventListener('click', function() {
+            alert('⛏️ Mining initiated! Welcome to the Neon Dimension! 🎮');
+        });
+    </script>
 </body>
 </html>
