@@ -1,231 +1,505 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Minecraft</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            background: #0a0e27;
-            font-family: 'Arial', sans-serif;
-            overflow-x: hidden;
-            color: #00ff00;
-        }
+<title>Firefox | My World</title>
 
-        /* Animated background */
-        .stars {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050505;
+    color: white;
+    overflow-x: hidden;
+}
 
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            border-bottom: 3px solid #00ff00;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
-            animation: glow 2s ease-in-out infinite;
-        }
+/* Animated background */
 
-        h1 {
-            font-size: 4em;
-            color: #00ff00;
-            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #0000ff;
-            font-weight: bold;
-            letter-spacing: 3px;
-        }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255,70,0,.15), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(255,140,0,.10), transparent 25%);
+    animation: backgroundMove 8s infinite alternate;
+    pointer-events: none;
+    z-index: -2;
+}
 
-        .subtitle {
-            color: #00ccff;
-            font-size: 1.5em;
-            text-shadow: 0 0 10px #00ccff;
-            margin-top: 10px;
-        }
+@keyframes backgroundMove {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
+}
 
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); }
-            50% { box-shadow: 0 0 40px rgba(0, 255, 0, 1); }
-        }
+/* Navigation */
 
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5,5,5,.7);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,100,0,.15);
+    z-index: 1000;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
 
-        .card {
-            background: rgba(0, 255, 0, 0.1);
-            border: 2px solid #00ff00;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
+.logo span {
+    color: #ff5a00;
+}
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 0, 1), 0 0 30px rgba(0, 0, 255, 0.8);
-            background: rgba(0, 255, 0, 0.2);
-        }
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 25px;
+    transition: .3s;
+}
 
-        .card h2 {
-            color: #00ff00;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px #00ff00;
-        }
+nav a:hover {
+    color: #ff5a00;
+}
 
-        .card p {
-            color: #00ccff;
-            line-height: 1.6;
-        }
+/* Hero */
 
-        .minecraft-block {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
-            border: 2px solid #00ff00;
-            margin: 20px auto;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), inset 0 0 10px rgba(0, 255, 255, 0.5);
-            animation: rotate 3s linear infinite;
-        }
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 100px 20px;
+}
 
-        @keyframes rotate {
-            0% { transform: rotateX(0deg) rotateY(0deg); }
-            100% { transform: rotateX(360deg) rotateY(360deg); }
-        }
+.fire {
+    font-size: 100px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 25px #ff4d00);
+}
 
-        .button {
-            background: linear-gradient(45deg, #00ff00, #00ccff);
-            color: #0a0e27;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1em;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+@keyframes float {
+    0%,100% {
+        transform: translateY(0);
+    }
 
-        .button:hover {
-            box-shadow: 0 0 30px rgba(0, 255, 0, 1), 0 0 20px rgba(0, 0, 255, 0.8);
-            transform: scale(1.1);
-        }
+    50% {
+        transform: translateY(-20px);
+    }
+}
 
-        .button:active {
-            transform: scale(0.95);
-        }
+.hero h1 {
+    font-size: clamp(60px, 13vw, 150px);
+    font-weight: 1000;
+    letter-spacing: 12px;
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            border-top: 2px solid #00ff00;
-            color: #00ccff;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-            margin-top: 60px;
-        }
+    background: linear-gradient(
+        90deg,
+        white,
+        #ff6500,
+        #ffb000,
+        #ff4500
+    );
 
-        .neon-line {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00ff00, transparent);
-            margin: 40px 0;
-            box-shadow: 0 0 10px #00ff00;
-        }
-    </style>
+    -webkit-background-clip: text;
+    color: transparent;
+
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 5px #ff4500);
+    }
+
+    to {
+        filter: drop-shadow(0 0 30px #ff4500);
+    }
+}
+
+.hero p {
+    color: #aaa;
+    font-size: 20px;
+    margin: 20px 0 35px;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 35px;
+    border: 2px solid #ff5500;
+    border-radius: 40px;
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.button:hover {
+    background: #ff5500;
+    box-shadow: 0 0 35px #ff5500;
+    transform: translateY(-5px);
+}
+
+/* Sections */
+
+section {
+    padding: 120px 10%;
+}
+
+.title {
+    font-size: 45px;
+    margin-bottom: 45px;
+    color: #ff5a00;
+}
+
+/* About */
+
+.about {
+    max-width: 800px;
+    color: #bbb;
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+/* Cards */
+
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+
+    gap: 25px;
+}
+
+.card {
+    padding: 35px;
+    background: linear-gradient(
+        145deg,
+        #121212,
+        #090909
+    );
+
+    border: 1px solid #222;
+    border-radius: 20px;
+
+    transition: .4s;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: #ff5500;
+    box-shadow:
+        0 15px 50px rgba(255,70,0,.18);
+}
+
+.card .icon {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #888;
+    line-height: 1.6;
+}
+
+/* Stats */
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.stat h2 {
+    font-size: 50px;
+    color: #ff5a00;
+}
+
+.stat p {
+    color: #777;
+}
+
+/* Contact */
+
+.contact {
+    text-align: center;
+    background: #090909;
+}
+
+.contact p {
+    color: #999;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+
+footer {
+    padding: 30px;
+    text-align: center;
+    color: #555;
+    border-top: 1px solid #1c1c1c;
+}
+
+/* Mobile */
+
+@media(max-width:700px) {
+
+    nav {
+        padding: 15px 5%;
+    }
+
+    nav a {
+        margin-left: 10px;
+        font-size: 12px;
+    }
+
+    section {
+        padding: 90px 7%;
+    }
+
+    .hero h1 {
+        letter-spacing: 4px;
+    }
+
+    .stats {
+        gap: 40px;
+    }
+}
+</style>
 </head>
+
 <body>
-    <div class="stars" id="stars"></div>
 
-    <header>
-        <h1>⛏️ NEON MINECRAFT ⛏️</h1>
-        <p class="subtitle">Welcome to the Digital Realm</p>
-    </header>
+<!-- NAVIGATION -->
 
-    <div class="container">
-        <div class="neon-line"></div>
+<nav>
 
-        <div class="grid">
-            <div class="card">
-                <h2>🔮 Blocks</h2>
-                <div class="minecraft-block"></div>
-                <p>Craft, build, and explore infinite worlds filled with neon energy and digital landscapes.</p>
-            </div>
-
-            <div class="card">
-                <h2>⚡ Power</h2>
-                <p>Experience the ultimate gaming adventure with glowing effects and cyberpunk aesthetics that push boundaries.</p>
-            </div>
-
-            <div class="card">
-                <h2>🎮 Mode</h2>
-                <p>Survival, Creative, or Adventure - choose your path in a neon-lit dimension where possibilities are endless.</p>
-            </div>
-        </div>
-
-        <div class="neon-line"></div>
-
-        <div style="text-align: center; margin: 60px 0;">
-            <h2 style="color: #00ff00; font-size: 2.5em; text-shadow: 0 0 20px #00ff00; margin-bottom: 30px;">
-                Ready to Enter?
-            </h2>
-            <button class="button">START MINING</button>
-        </div>
+    <div class="logo">
+        🔥 <span>FIREFOX</span>
     </div>
 
-    <footer>
-        <p>✨ Built with Neon Energy | Powered by GitHub Pages ✨</p>
-    </footer>
+    <div>
+        <a href="#about">About</a>
+        <a href="#world">My World</a>
+        <a href="#stats">Stats</a>
+    </div>
 
-    <script>
-        // Create random stars
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            starsContainer.appendChild(star);
-        }
+</nav>
 
-        // Button click effect
-        document.querySelector('.button').addEventListener('click', function() {
-            alert('⛏️ Mining initiated! Welcome to the Neon Dimension! 🎮');
-        });
-    </script>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div>
+
+        <div class="fire">🔥</div>
+
+        <h1>FIREFOX</h1>
+
+        <p>
+            Welcome to my world.
+        </p>
+
+        <a href="#about" class="button">
+            ENTER
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <h2 class="title">
+        WHO AM I?
+    </h2>
+
+    <p class="about">
+
+        Yo! I'm <strong>Firefox</strong>. 🦊🔥
+
+        <br><br>
+
+        This is my personal website — a place where
+        I can show the things I like, the things I'm
+        learning, and the stuff I create.
+
+        <br><br>
+
+        I'm into gaming, anime, technology,
+        creativity, and experimenting with cool ideas.
+
+        <br><br>
+
+        And this website?
+
+        <strong>
+            It's only the beginning.
+        </strong>
+
+    </p>
+
+</section>
+
+
+<!-- MY WORLD -->
+
+<section id="world">
+
+    <h2 class="title">
+        MY WORLD
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">🎮</div>
+
+            <h3>Gaming</h3>
+
+            <p>
+                Games, challenges, insane moments
+                and discovering new worlds.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">⚔️</div>
+
+            <h3>Anime</h3>
+
+            <p>
+                Epic characters, powerful transformations
+                and legendary battles.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">💻</div>
+
+            <h3>Technology</h3>
+
+            <p>
+                Coding, websites, AI and learning
+                how technology works.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🚀</div>
+
+            <h3>Creating</h3>
+
+            <p>
+                Turning random ideas into something
+                real and awesome.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section id="stats">
+
+    <h2 class="title">
+        FIREFOX MODE
+    </h2>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h2>∞</h2>
+            <p>Ideas</p>
+        </div>
+
+        <div class="stat">
+            <h2>🔥</h2>
+            <p>Energy</p>
+        </div>
+
+        <div class="stat">
+            <h2>100%</h2>
+            <p>Firefox</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+    <h2 class="title">
+        THIS IS JUST THE BEGINNING
+    </h2>
+
+    <p>
+        The Firefox story is still being written...
+    </p>
+
+    <a href="#" class="button">
+        🔥 BACK TO TOP
+    </a>
+
+</section>
+
+
+<footer>
+
+    © 2026 Firefox 🦊🔥
+    <br>
+    Built with imagination.
+
+</footer>
+
 </body>
 </html>
+```
