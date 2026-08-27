@@ -5,13 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Firefox | My World</title>
+<title>Firefox 🔥 | Dragon Ball Power</title>
 
 <style>
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -20,276 +20,411 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #050505;
+    background: #05050b;
     color: white;
     overflow-x: hidden;
 }
 
-/* Animated background */
+/* BACKGROUND */
 
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(circle at 20% 30%, rgba(255,70,0,.15), transparent 25%),
-        radial-gradient(circle at 80% 70%, rgba(255,140,0,.10), transparent 25%);
-    animation: backgroundMove 8s infinite alternate;
+        radial-gradient(circle at 50% 10%, #ff660055, transparent 35%),
+        radial-gradient(circle at 20% 80%, #7b00ff33, transparent 30%),
+        radial-gradient(circle at 90% 60%, #0088ff22, transparent 30%);
     pointer-events: none;
     z-index: -2;
 }
 
-@keyframes backgroundMove {
-    from { transform: scale(1); }
-    to { transform: scale(1.2); }
-}
-
-/* Navigation */
+/* NAVBAR */
 
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 20px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(5,5,5,.7);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255,100,0,.15);
-    z-index: 1000;
+    z-index: 100;
+    padding: 15px;
+    text-align: center;
+
+    background: rgba(5, 5, 15, 0.85);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid #ff660055;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 900;
-    letter-spacing: 2px;
+nav button {
+    margin: 5px;
+    padding: 10px 18px;
+
+    color: white;
+    background: #121222;
+
+    border: 1px solid #ff660066;
+    border-radius: 12px;
+
+    cursor: pointer;
+    font-weight: bold;
+
+    transition: 0.25s;
 }
 
-.logo span {
-    color: #ff5a00;
+nav button:hover {
+    background: #ff6600;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px #ff6600;
 }
 
-nav a {
-    color: #aaa;
-    text-decoration: none;
-    margin-left: 25px;
-    transition: .3s;
+/* PAGES */
+
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 120px 8% 60px;
 }
 
-nav a:hover {
-    color: #ff5a00;
+.page.active {
+    display: block;
 }
 
-/* Hero */
+/* HOME */
 
 .hero {
     min-height: 100vh;
+
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
     text-align: center;
-    position: relative;
-    padding: 100px 20px;
 }
 
-.fire {
-    font-size: 100px;
-    animation: float 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 25px #ff4d00);
+.flame {
+    font-size: 80px;
+
+    animation:
+        float 2s infinite alternate ease-in-out,
+        glow 1.5s infinite alternate;
 }
 
 @keyframes float {
-    0%,100% {
+    from {
         transform: translateY(0);
     }
 
-    50% {
-        transform: translateY(-20px);
+    to {
+        transform: translateY(-18px);
     }
-}
-
-.hero h1 {
-    font-size: clamp(60px, 13vw, 150px);
-    font-weight: 1000;
-    letter-spacing: 12px;
-
-    background: linear-gradient(
-        90deg,
-        white,
-        #ff6500,
-        #ffb000,
-        #ff4500
-    );
-
-    -webkit-background-clip: text;
-    color: transparent;
-
-    animation: glow 3s infinite alternate;
 }
 
 @keyframes glow {
     from {
-        filter: drop-shadow(0 0 5px #ff4500);
+        filter: drop-shadow(0 0 5px #ff6600);
     }
 
     to {
-        filter: drop-shadow(0 0 30px #ff4500);
+        filter: drop-shadow(0 0 35px #ff6600);
     }
 }
 
-.hero p {
+.logo {
+    font-size: clamp(60px, 12vw, 140px);
+
+    font-weight: 900;
+    letter-spacing: -6px;
+
+    background: linear-gradient(
+        90deg,
+        white,
+        #ffd000,
+        #ff6600
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
     color: #aaa;
-    font-size: 20px;
-    margin: 20px 0 35px;
+    font-size: 22px;
+    margin: 20px 0;
 }
 
-.button {
+.tag {
     display: inline-block;
-    padding: 15px 35px;
-    border: 2px solid #ff5500;
-    border-radius: 40px;
+
+    padding: 8px 14px;
+    margin: 5px;
+
+    border-radius: 30px;
+
+    background: #ff660018;
+    border: 1px solid #ff660066;
+
+    color: #ffd000;
+}
+
+/* BUTTON */
+
+.btn {
+    padding: 13px 22px;
+
+    background: linear-gradient(
+        135deg,
+        #ff9900,
+        #ff3300
+    );
+
+    border: none;
+    border-radius: 12px;
+
     color: white;
-    text-decoration: none;
-    transition: .3s;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
 }
 
-.button:hover {
-    background: #ff5500;
-    box-shadow: 0 0 35px #ff5500;
-    transform: translateY(-5px);
+.btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 30px #ff6600;
 }
 
-/* Sections */
+/* HEADINGS */
 
-section {
-    padding: 120px 10%;
+h2 {
+    font-size: 50px;
+    margin-bottom: 30px;
+
+    background: linear-gradient(
+        90deg,
+        #fff,
+        #ffd000,
+        #ff6600
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-.title {
-    font-size: 45px;
-    margin-bottom: 45px;
-    color: #ff5a00;
-}
+/* CARDS */
 
-/* About */
-
-.about {
-    max-width: 800px;
-    color: #bbb;
-    font-size: 20px;
-    line-height: 1.8;
-}
-
-/* Cards */
-
-.cards {
+.grid {
     display: grid;
+
     grid-template-columns:
         repeat(auto-fit, minmax(230px, 1fr));
 
-    gap: 25px;
+    gap: 20px;
 }
 
 .card {
-    padding: 35px;
-    background: linear-gradient(
-        145deg,
-        #121212,
-        #090909
-    );
+    padding: 25px;
 
-    border: 1px solid #222;
+    background:
+        linear-gradient(
+            145deg,
+            #151529,
+            #0b0b16
+        );
+
+    border: 1px solid #ffffff15;
+
     border-radius: 20px;
 
-    transition: .4s;
+    box-shadow:
+        0 15px 40px #0008;
+
+    transition: 0.25s;
 }
 
 .card:hover {
-    transform: translateY(-12px) scale(1.02);
-    border-color: #ff5500;
-    box-shadow:
-        0 15px 50px rgba(255,70,0,.18);
-}
+    transform: translateY(-7px);
 
-.card .icon {
-    font-size: 45px;
-    margin-bottom: 20px;
+    border-color: #ff660066;
+
+    box-shadow:
+        0 0 30px #ff660033;
 }
 
 .card h3 {
-    font-size: 24px;
+    color: #ffd000;
+    font-size: 25px;
     margin-bottom: 12px;
 }
 
 .card p {
-    color: #888;
-    line-height: 1.6;
+    color: #bbb;
+    line-height: 1.7;
 }
 
-/* Stats */
+/* DRAGON BALL */
 
-.stats {
-    display: flex;
-    justify-content: center;
-    gap: 80px;
-    flex-wrap: wrap;
+.character {
     text-align: center;
 }
 
-.stat h2 {
-    font-size: 50px;
-    color: #ff5a00;
+.character-icon {
+    font-size: 70px;
+    margin-bottom: 15px;
 }
 
-.stat p {
-    color: #777;
-}
-
-/* Contact */
-
-.contact {
+.energy {
     text-align: center;
-    background: #090909;
+
+    font-size: 90px;
+
+    margin: 50px;
+
+    transition: 0.5s;
 }
 
-.contact p {
-    color: #999;
-    margin-bottom: 30px;
+.ultra {
+    animation: ultra 0.6s infinite alternate;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 30px #00bfff,
+        0 0 70px #ffffff;
 }
 
-/* Footer */
+@keyframes ultra {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+
+/* POWER LAB */
+
+.power-box {
+    max-width: 700px;
+    margin: auto;
+
+    text-align: center;
+}
+
+.power-number {
+    font-size: 70px;
+
+    margin: 25px;
+
+    color: #ffd000;
+
+    text-shadow:
+        0 0 20px #ff6600;
+}
+
+.power-bar {
+    width: 100%;
+    height: 25px;
+
+    background: #222238;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin: 20px 0;
+}
+
+.power-fill {
+    height: 100%;
+    width: 1%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd000,
+            #ff6600,
+            #ff0000
+        );
+
+    transition: width 0.7s;
+
+    box-shadow:
+        0 0 20px #ff6600;
+}
+
+/* QUIZ */
+
+.quiz {
+    max-width: 700px;
+    margin: auto;
+}
+
+.question {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.answer {
+    display: block;
+
+    width: 100%;
+
+    margin: 10px 0;
+
+    padding: 14px;
+
+    background: #141425;
+
+    color: white;
+
+    border: 1px solid #ffffff22;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.answer:hover {
+    background: #ff6600;
+}
+
+.correct {
+    background: #008844 !important;
+}
+
+.wrong {
+    background: #990022 !important;
+}
+
+/* FOOTER */
 
 footer {
-    padding: 30px;
     text-align: center;
-    color: #555;
-    border-top: 1px solid #1c1c1c;
+
+    padding: 30px;
+
+    color: #666;
+
+    border-top: 1px solid #ffffff15;
 }
 
-/* Mobile */
+/* MOBILE */
 
-@media(max-width:700px) {
+@media(max-width:600px) {
 
-    nav {
-        padding: 15px 5%;
-    }
-
-    nav a {
-        margin-left: 10px;
+    nav button {
         font-size: 12px;
+        padding: 8px 10px;
     }
 
-    section {
-        padding: 90px 7%;
+    h2 {
+        font-size: 38px;
     }
 
-    .hero h1 {
-        letter-spacing: 4px;
-    }
-
-    .stats {
-        gap: 40px;
+    .logo {
+        letter-spacing: -3px;
     }
 }
 </style>
@@ -301,204 +436,510 @@ footer {
 
 <nav>
 
-    <div class="logo">
-        🔥 <span>FIREFOX</span>
-    </div>
+<button onclick="showPage('home')">
+🔥 Home
+</button>
 
-    <div>
-        <a href="#about">About</a>
-        <a href="#world">My World</a>
-        <a href="#stats">Stats</a>
-    </div>
+<button onclick="showPage('about')">
+👤 About Me
+</button>
+
+<button onclick="showPage('dragonball')">
+🐉 Dragon Ball
+</button>
+
+<button onclick="showPage('power')">
+⚡ Power Lab
+</button>
+
+<button onclick="showPage('quiz')">
+🧠 Quiz
+</button>
 
 </nav>
 
 
-<!-- HERO -->
+<!-- HOME -->
 
-<section class="hero">
+<section id="home" class="page active">
 
-    <div>
+<div class="hero">
 
-        <div class="fire">🔥</div>
+<div>
 
-        <h1>FIREFOX</h1>
+<div class="flame">
+🔥
+</div>
 
-        <p>
-            Welcome to my world.
-        </p>
+<h1 class="logo">
+FIREFOX
+</h1>
 
-        <a href="#about" class="button">
-            ENTER
-        </a>
+<p class="subtitle">
+Welcome to my corner of the internet.
+</p>
 
-    </div>
+<div>
+
+<span class="tag">
+🔥 Anime Fan
+</span>
+
+<span class="tag">
+🐉 Dragon Ball
+</span>
+
+<span class="tag">
+💻 Tech
+</span>
+
+<span class="tag">
+⚡ Gamer
+</span>
+
+</div>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('power')">
+
+⚡ UNLOCK MY POWER
+
+</button>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- ABOUT -->
 
-<section id="about">
+<section id="about" class="page">
 
-    <h2 class="title">
-        WHO AM I?
-    </h2>
+<h2>
+👤 About Firefox
+</h2>
 
-    <p class="about">
+<div class="grid">
 
-        Yo! I'm <strong>Firefox</strong>. 🦊🔥
+<div class="card">
 
-        <br><br>
+<h3>
+🔥 Who Am I?
+</h3>
 
-        This is my personal website — a place where
-        I can show the things I like, the things I'm
-        learning, and the stuff I create.
+<p>
+I'm Firefox — curious, creative,
+and always looking for something
+cool to build or try.
+</p>
 
-        <br><br>
-
-        I'm into gaming, anime, technology,
-        creativity, and experimenting with cool ideas.
-
-        <br><br>
-
-        And this website?
-
-        <strong>
-            It's only the beginning.
-        </strong>
-
-    </p>
-
-</section>
+</div>
 
 
-<!-- MY WORLD -->
+<div class="card">
 
-<section id="world">
+<h3>
+⚡ My Vibe
+</h3>
 
-    <h2 class="title">
-        MY WORLD
-    </h2>
+<p>
+🔥 Energy<br>
+🐉 Dragon Ball<br>
+🎮 Gaming<br>
+💻 Technology<br>
+🚀 Experimenting
+</p>
 
-    <div class="cards">
-
-        <div class="card">
-
-            <div class="icon">🎮</div>
-
-            <h3>Gaming</h3>
-
-            <p>
-                Games, challenges, insane moments
-                and discovering new worlds.
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="card">
+<div class="card">
 
-            <div class="icon">⚔️</div>
+<h3>
+🌟 My Goal
+</h3>
 
-            <h3>Anime</h3>
+<p>
+Keep learning, keep creating,
+and make awesome things along
+the way.
+</p>
 
-            <p>
-                Epic characters, powerful transformations
-                and legendary battles.
-            </p>
+</div>
 
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">💻</div>
-
-            <h3>Technology</h3>
-
-            <p>
-                Coding, websites, AI and learning
-                how technology works.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">🚀</div>
-
-            <h3>Creating</h3>
-
-            <p>
-                Turning random ideas into something
-                real and awesome.
-            </p>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- STATS -->
+<!-- DRAGON BALL -->
 
-<section id="stats">
+<section id="dragonball" class="page">
 
-    <h2 class="title">
-        FIREFOX MODE
-    </h2>
+<h2>
+🐉 Dragon Ball Zone
+</h2>
 
-    <div class="stats">
+<div class="grid">
 
-        <div class="stat">
-            <h2>∞</h2>
-            <p>Ideas</p>
-        </div>
 
-        <div class="stat">
-            <h2>🔥</h2>
-            <p>Energy</p>
-        </div>
+<div class="card character">
 
-        <div class="stat">
-            <h2>100%</h2>
-            <p>Firefox</p>
-        </div>
+<div class="character-icon">
+🥋
+</div>
 
-    </div>
+<h3>
+Goku
+</h3>
+
+<p>
+The legendary Saiyan who
+never stops pushing his limits.
+</p>
+
+<br>
+
+<button class="btn"
+onclick="transform('Goku')">
+
+🌌 Ultra Instinct
+
+</button>
+
+</div>
+
+
+<div class="card character">
+
+<div class="character-icon">
+👑
+</div>
+
+<h3>
+Vegeta
+</h3>
+
+<p>
+The proud Saiyan prince
+and Goku's greatest rival.
+</p>
+
+<br>
+
+<button class="btn"
+onclick="transform('Vegeta')">
+
+💜 Ultra Ego
+
+</button>
+
+</div>
+
+
+<div class="card character">
+
+<div class="character-icon">
+💥
+</div>
+
+<h3>
+Kamehameha
+</h3>
+
+<p>
+A legendary energy attack.
+Charge your own power in
+the Power Lab.
+</p>
+
+</div>
+
+</div>
+
+
+<div id="energy" class="energy">
+✨
+</div>
+
+<h3 id="transformation"
+style="text-align:center">
+Choose a transformation...
+</h3>
 
 </section>
 
 
-<!-- CONTACT -->
+<!-- POWER LAB -->
 
-<section class="contact">
+<section id="power" class="page">
 
-    <h2 class="title">
-        THIS IS JUST THE BEGINNING
-    </h2>
+<h2>
+⚡ Firefox Power Lab
+</h2>
 
-    <p>
-        The Firefox story is still being written...
-    </p>
+<div class="card power-box">
 
-    <a href="#" class="button">
-        🔥 BACK TO TOP
-    </a>
+<h3>
+SCOUTER ONLINE
+</h3>
+
+<p>
+Let's see how powerful Firefox is...
+</p>
+
+<div
+id="powerNumber"
+class="power-number">
+
+9,001
+
+</div>
+
+<button
+class="btn"
+onclick="powerUp()">
+
+⚡ POWER UP!
+
+</button>
+
+<div class="power-bar">
+
+<div
+id="powerFill"
+class="power-fill">
+
+</div>
+
+</div>
+
+<p id="scouter">
+
+Scouter: Standing by...
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section id="quiz" class="page">
+
+<h2>
+🧠 Dragon Ball Quiz
+</h2>
+
+<div class="card quiz">
+
+<div class="question">
+
+Who is Goku's biggest Saiyan rival?
+
+</div>
+
+
+<button
+class="answer"
+onclick="answer(this,false)">
+
+Piccolo
+
+</button>
+
+
+<button
+class="answer"
+onclick="answer(this,true)">
+
+Vegeta
+
+</button>
+
+
+<button
+class="answer"
+onclick="answer(this,false)">
+
+Krillin
+
+</button>
+
+
+<p
+id="quizResult"
+style="
+font-size:22px;
+margin-top:20px;
+">
+
+</p>
+
+</div>
 
 </section>
 
 
 <footer>
 
-    © 2026 Firefox 🦊🔥
-    <br>
-    Built with imagination.
+🔥 Firefox Website • Dragon Ball Power Zone 🐉
 
 </footer>
+
+
+<script>
+
+/* PAGE SWITCHING */
+
+function showPage(page) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(section => {
+
+            section.classList.remove("active");
+
+        });
+
+    document
+        .getElementById(page)
+        .classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+
+/* TRANSFORMATIONS */
+
+function transform(character) {
+
+    const energy =
+        document.getElementById("energy");
+
+    const text =
+        document.getElementById("transformation");
+
+    energy.classList.add("ultra");
+
+    if (character === "Goku") {
+
+        energy.innerHTML = "🌌✨";
+
+        text.innerHTML =
+            "🌌 GOKU HAS ENTERED ULTRA INSTINCT!";
+
+    }
+
+    else {
+
+        energy.innerHTML = "💜💥";
+
+        text.innerHTML =
+            "💜 VEGETA HAS ENTERED ULTRA EGO!";
+
+    }
+
+}
+
+
+/* POWER LEVEL */
+
+function powerUp() {
+
+    const power =
+        Math.floor(
+            Math.random() * 900000
+        ) + 9001;
+
+    document
+        .getElementById("powerNumber")
+        .innerText =
+        power.toLocaleString();
+
+
+    let percent =
+        Math.min(
+            100,
+            Math.floor(power / 10000)
+        );
+
+    document
+        .getElementById("powerFill")
+        .style.width =
+        percent + "%";
+
+
+    const scouter =
+        document.getElementById("scouter");
+
+
+    if (power > 800000) {
+
+        scouter.innerText =
+            "🚨 SCOUTER: IT'S OVER 9000!!!";
+
+    }
+
+    else if (power > 400000) {
+
+        scouter.innerText =
+            "⚡ SCOUTER: EXTREME POWER DETECTED!";
+
+    }
+
+    else {
+
+        scouter.innerText =
+            "🔥 SCOUTER: POWER LEVEL RISING!";
+
+    }
+
+}
+
+
+/* QUIZ */
+
+function answer(button, correct) {
+
+    document
+        .querySelectorAll(".answer")
+        .forEach(
+            b => b.disabled = true
+        );
+
+
+    if (correct) {
+
+        button.classList.add("correct");
+
+        document
+            .getElementById("quizResult")
+            .innerText =
+            "🔥 CORRECT! You know your Dragon Ball!";
+
+    }
+
+    else {
+
+        button.classList.add("wrong");
+
+        document
+            .getElementById("quizResult")
+            .innerText =
+            "❌ Not quite! The answer was Vegeta.";
+
+    }
+
+}
+
+</script>
 
 </body>
 </html>
