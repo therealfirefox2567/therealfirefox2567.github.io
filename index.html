@@ -2,511 +2,1500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Firefox 🔥 | Dragon Ball Power</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>🔥 Firefox | My Dragon Ball Journey</title>
+
+<!-- WEBSITE ICON / FAVICON -->
+<link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<rect width='100' height='100' rx='22' fill='%23050505'/>
+<text x='50' y='72' font-size='65' text-anchor='middle'>🔥</text>
+</svg>">
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+
+/* =========================
+   FIREFOX DRAGON BALL SITE
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #05050b;
-    color: white;
-    overflow-x: hidden;
+body{
+    background:#050505;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* FIERY BACKGROUND */
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
     background:
-        radial-gradient(circle at 50% 10%, #ff660055, transparent 35%),
-        radial-gradient(circle at 20% 80%, #7b00ff33, transparent 30%),
-        radial-gradient(circle at 90% 60%, #0088ff22, transparent 30%);
-    pointer-events: none;
-    z-index: -2;
+    radial-gradient(
+        circle at 50% 0%,
+        rgba(255,90,0,.20),
+        transparent 35%
+    ),
+    radial-gradient(
+        circle at 10% 80%,
+        rgba(255,140,0,.10),
+        transparent 30%
+    );
+
+    pointer-events:none;
+    z-index:-3;
 }
 
-/* NAVBAR */
+/* FLOATING PARTICLES */
 
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    padding: 15px;
-    text-align: center;
+.particle{
+    position:fixed;
+    width:4px;
+    height:4px;
 
-    background: rgba(5, 5, 15, 0.85);
-    backdrop-filter: blur(12px);
+    background:#ff7200;
+    border-radius:50%;
 
-    border-bottom: 1px solid #ff660055;
+    box-shadow:
+    0 0 12px #ff7200;
+
+    animation:rise linear infinite;
+
+    pointer-events:none;
+    z-index:-1;
 }
 
-nav button {
-    margin: 5px;
-    padding: 10px 18px;
+@keyframes rise{
 
-    color: white;
-    background: #121222;
+    from{
+        transform:translateY(110vh);
+        opacity:0;
+    }
 
-    border: 1px solid #ff660066;
-    border-radius: 12px;
+    20%{
+        opacity:1;
+    }
 
-    cursor: pointer;
-    font-weight: bold;
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
 
-    transition: 0.25s;
 }
 
-nav button:hover {
-    background: #ff6600;
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px #ff6600;
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:16px 6%;
+
+    background:rgba(5,5,5,.82);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:
+    1px solid rgba(255,90,0,.25);
+
+    z-index:1000;
 }
 
-/* PAGES */
+.nav-logo{
 
-.page {
-    display: none;
-    min-height: 100vh;
-    padding: 120px 8% 60px;
+    font-weight:900;
+    font-size:23px;
+
+    color:#ff6500;
+
+    text-shadow:
+    0 0 15px #ff5500;
 }
 
-.page.active {
-    display: block;
+.nav-links{
+
+    display:flex;
+    gap:25px;
 }
 
-/* HOME */
+.nav-links a{
 
-.hero {
-    min-height: 100vh;
+    color:#aaa;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-decoration:none;
 
-    text-align: center;
+    font-size:14px;
+
+    transition:.25s;
 }
 
-.flame {
-    font-size: 80px;
+.nav-links a:hover{
+
+    color:#ff6500;
+
+    text-shadow:
+    0 0 10px #ff6500;
+}
+
+/* MOBILE NAV */
+
+@media(max-width:700px){
+
+    nav{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .nav-links{
+        gap:12px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:120px 20px 80px;
+
+    position:relative;
+}
+
+.hero-content{
+
+    max-width:1000px;
+}
+
+.fire{
+
+    font-size:90px;
 
     animation:
-        float 2s infinite alternate ease-in-out,
-        glow 1.5s infinite alternate;
+    fireFloat 2s infinite alternate,
+    fireGlow 1.5s infinite alternate;
 }
 
-@keyframes float {
-    from {
-        transform: translateY(0);
+@keyframes fireFloat{
+
+    from{
+        transform:translateY(0);
     }
 
-    to {
-        transform: translateY(-18px);
+    to{
+        transform:translateY(-18px);
     }
+
 }
 
-@keyframes glow {
-    from {
-        filter: drop-shadow(0 0 5px #ff6600);
+@keyframes fireGlow{
+
+    from{
+        filter:drop-shadow(
+            0 0 5px #ff4500
+        );
     }
 
-    to {
-        filter: drop-shadow(0 0 35px #ff6600);
+    to{
+        filter:drop-shadow(
+            0 0 40px #ff4500
+        );
     }
+
 }
 
-.logo {
-    font-size: clamp(60px, 12vw, 140px);
+.hero h1{
 
-    font-weight: 900;
-    letter-spacing: -6px;
+    font-size:
+    clamp(60px,13vw,150px);
 
-    background: linear-gradient(
+    font-weight:1000;
+
+    letter-spacing:8px;
+
+    background:
+    linear-gradient(
         90deg,
         white,
         #ffd000,
-        #ff6600
+        #ff6500,
+        #ff2200
     );
 
-    -webkit-background-clip: text;
-    color: transparent;
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    filter:
+    drop-shadow(
+        0 0 20px
+        rgba(255,70,0,.5)
+    );
 }
 
-.subtitle {
-    color: #aaa;
-    font-size: 22px;
-    margin: 20px 0;
+.hero h2{
+
+    color:#aaa;
+
+    margin:15px 0;
+
+    font-weight:normal;
 }
 
-.tag {
-    display: inline-block;
+.hero p{
 
-    padding: 8px 14px;
-    margin: 5px;
+    color:#888;
 
-    border-radius: 30px;
+    max-width:700px;
 
-    background: #ff660018;
-    border: 1px solid #ff660066;
+    margin:20px auto;
 
-    color: #ffd000;
+    line-height:1.8;
+
+    font-size:18px;
 }
 
 /* BUTTON */
 
-.btn {
-    padding: 13px 22px;
+.btn{
 
-    background: linear-gradient(
+    display:inline-block;
+
+    padding:14px 28px;
+
+    border-radius:30px;
+
+    border:
+    1px solid #ff6500;
+
+    color:white;
+
+    background:
+    linear-gradient(
         135deg,
-        #ff9900,
-        #ff3300
+        #ff8500,
+        #ff3500
     );
 
-    border: none;
-    border-radius: 12px;
+    text-decoration:none;
 
-    color: white;
+    font-weight:bold;
 
-    font-size: 16px;
-    font-weight: bold;
+    cursor:pointer;
 
-    cursor: pointer;
+    transition:.3s;
 
-    transition: 0.25s;
+    box-shadow:
+    0 0 20px
+    rgba(255,70,0,.2);
 }
 
-.btn:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 30px #ff6600;
+.btn:hover{
+
+    transform:
+    translateY(-5px)
+    scale(1.03);
+
+    box-shadow:
+    0 0 35px
+    #ff5500;
 }
 
-/* HEADINGS */
+/* =========================
+   SECTIONS
+========================= */
 
-h2 {
-    font-size: 50px;
-    margin-bottom: 30px;
+section{
 
-    background: linear-gradient(
+    padding:
+    110px 7%;
+}
+
+.section-title{
+
+    font-size:50px;
+
+    margin-bottom:15px;
+
+    background:
+    linear-gradient(
         90deg,
-        #fff,
-        #ffd000,
-        #ff6600
+        white,
+        #ff6500
     );
 
-    -webkit-background-clip: text;
-    color: transparent;
+    -webkit-background-clip:text;
+
+    color:transparent;
 }
 
-/* CARDS */
+.section-subtitle{
 
-.grid {
-    display: grid;
+    color:#777;
+
+    margin-bottom:45px;
+
+    font-size:18px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid{
+
+    display:grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(230px, 1fr));
+    repeat(
+        auto-fit,
+        minmax(240px,1fr)
+    );
 
-    gap: 20px;
+    gap:22px;
 }
 
-.card {
-    padding: 25px;
+.card{
 
     background:
-        linear-gradient(
-            145deg,
-            #151529,
-            #0b0b16
-        );
+    linear-gradient(
+        145deg,
+        #151515,
+        #090909
+    );
 
-    border: 1px solid #ffffff15;
+    border:
+    1px solid #252525;
 
-    border-radius: 20px;
+    border-radius:20px;
+
+    padding:30px;
+
+    transition:.35s;
+}
+
+.card:hover{
+
+    transform:
+    translateY(-8px);
+
+    border-color:#ff6500;
 
     box-shadow:
-        0 15px 40px #0008;
-
-    transition: 0.25s;
+    0 15px 50px
+    rgba(255,70,0,.15);
 }
 
-.card:hover {
-    transform: translateY(-7px);
+.card-icon{
 
-    border-color: #ff660066;
+    font-size:50px;
 
-    box-shadow:
-        0 0 30px #ff660033;
+    margin-bottom:18px;
 }
 
-.card h3 {
-    color: #ffd000;
-    font-size: 25px;
-    margin-bottom: 12px;
+.card h3{
+
+    font-size:25px;
+
+    margin-bottom:12px;
+
+    color:#ff8500;
 }
 
-.card p {
-    color: #bbb;
-    line-height: 1.7;
+.card p{
+
+    color:#888;
+
+    line-height:1.7;
 }
 
-/* DRAGON BALL */
+/* =========================
+   HISTORY
+========================= */
 
-.character {
-    text-align: center;
+.history{
+
+    position:relative;
 }
 
-.character-icon {
-    font-size: 70px;
-    margin-bottom: 15px;
-}
+.history::before{
 
-.energy {
-    text-align: center;
+    content:"";
 
-    font-size: 90px;
+    position:absolute;
 
-    margin: 50px;
+    left:50%;
 
-    transition: 0.5s;
-}
+    top:0;
 
-.ultra {
-    animation: ultra 0.6s infinite alternate;
+    bottom:0;
 
-    text-shadow:
-        0 0 10px white,
-        0 0 30px #00bfff,
-        0 0 70px #ffffff;
-}
-
-@keyframes ultra {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.2);
-    }
-}
-
-/* POWER LAB */
-
-.power-box {
-    max-width: 700px;
-    margin: auto;
-
-    text-align: center;
-}
-
-.power-number {
-    font-size: 70px;
-
-    margin: 25px;
-
-    color: #ffd000;
-
-    text-shadow:
-        0 0 20px #ff6600;
-}
-
-.power-bar {
-    width: 100%;
-    height: 25px;
-
-    background: #222238;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin: 20px 0;
-}
-
-.power-fill {
-    height: 100%;
-    width: 1%;
+    width:3px;
 
     background:
-        linear-gradient(
-            90deg,
-            #ffd000,
-            #ff6600,
-            #ff0000
-        );
+    linear-gradient(
+        #ffba00,
+        #ff3500,
+        transparent
+    );
 
-    transition: width 0.7s;
+    transform:
+    translateX(-50%);
+}
+
+.timeline{
+
+    position:relative;
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+.era{
+
+    width:46%;
+
+    padding:28px;
+
+    margin:35px 0;
+
+    background:#111;
+
+    border:
+    1px solid #292929;
+
+    border-radius:20px;
+
+    position:relative;
+
+    transition:.3s;
+}
+
+.era:hover{
+
+    border-color:#ff6500;
 
     box-shadow:
-        0 0 20px #ff6600;
+    0 0 30px
+    rgba(255,80,0,.15);
+
+    transform:
+    scale(1.02);
 }
 
-/* QUIZ */
+.era:nth-child(even){
 
-.quiz {
-    max-width: 700px;
-    margin: auto;
+    margin-left:54%;
 }
 
-.question {
-    font-size: 25px;
-    margin-bottom: 20px;
+.era::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:17px;
+    height:17px;
+
+    border-radius:50%;
+
+    background:#ff6500;
+
+    box-shadow:
+    0 0 20px #ff6500;
+
+    top:35px;
 }
 
-.answer {
-    display: block;
+.era:nth-child(odd)::after{
 
-    width: 100%;
+    right:-9%;
 
-    margin: 10px 0;
-
-    padding: 14px;
-
-    background: #141425;
-
-    color: white;
-
-    border: 1px solid #ffffff22;
-
-    border-radius: 10px;
-
-    cursor: pointer;
 }
 
-.answer:hover {
-    background: #ff6600;
+.era:nth-child(even)::after{
+
+    left:-9%;
+
 }
 
-.correct {
-    background: #008844 !important;
+.era-year{
+
+    color:#ff6500;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
 }
 
-.wrong {
-    background: #990022 !important;
+.era h3{
+
+    font-size:27px;
+
+    margin-bottom:12px;
 }
 
-/* FOOTER */
+.era p{
 
-footer {
-    text-align: center;
+    color:#999;
 
-    padding: 30px;
-
-    color: #666;
-
-    border-top: 1px solid #ffffff15;
+    line-height:1.7;
 }
 
-/* MOBILE */
+.power-text{
 
-@media(max-width:600px) {
+    color:#ffd000;
 
-    nav button {
-        font-size: 12px;
-        padding: 8px 10px;
+    margin-top:15px;
+
+    font-weight:bold;
+}
+
+/* MOBILE TIMELINE */
+
+@media(max-width:700px){
+
+    .history::before{
+        left:10px;
     }
 
-    h2 {
-        font-size: 38px;
+    .era,
+    .era:nth-child(even){
+
+        width:calc(100% - 35px);
+
+        margin-left:35px;
     }
 
-    .logo {
-        letter-spacing: -3px;
+    .era::after,
+    .era:nth-child(even)::after{
+
+        left:-34px;
     }
+
 }
+
+/* =========================
+   FIREFOX ABOUT
+========================= */
+
+.about-box{
+
+    display:grid;
+
+    grid-template-columns:
+    320px 1fr;
+
+    gap:45px;
+
+    max-width:1100px;
+
+    margin:auto;
+
+    align-items:center;
+}
+
+.avatar{
+
+    width:280px;
+    height:280px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+    4px solid #ff6500;
+
+    box-shadow:
+    0 0 45px
+    rgba(255,80,0,.4);
+
+    background:#111;
+}
+
+.avatar-placeholder{
+
+    width:280px;
+    height:280px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:100px;
+
+    background:
+    radial-gradient(
+        circle,
+        #ff6500,
+        #171717 60%
+    );
+
+    border:
+    4px solid #ff6500;
+
+    box-shadow:
+    0 0 45px
+    rgba(255,80,0,.4);
+}
+
+.about-text{
+
+    color:#aaa;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+.about-text strong{
+
+    color:#ff7200;
+}
+
+@media(max-width:700px){
+
+    .about-box{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+    .avatar,
+    .avatar-placeholder{
+
+        margin:auto;
+    }
+
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(200px,1fr)
+    );
+
+    gap:20px;
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+.stat{
+
+    padding:25px;
+
+    background:#101010;
+
+    border-radius:18px;
+
+    border:
+    1px solid #252525;
+}
+
+.stat-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:8px;
+
+    color:#aaa;
+}
+
+.bar{
+
+    height:12px;
+
+    background:#252525;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.fill{
+
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ffd000,
+        #ff6500,
+        #ff2200
+    );
+
+    box-shadow:
+    0 0 15px #ff6500;
+}
+
+/* =========================
+   POWER LAB
+========================= */
+
+.power-lab{
+
+    text-align:center;
+
+    max-width:800px;
+
+    margin:auto;
+}
+
+.power-number{
+
+    font-size:75px;
+
+    color:#ffd000;
+
+    text-shadow:
+    0 0 25px #ff6500;
+
+    margin:25px;
+}
+
+.power-bar{
+
+    width:100%;
+
+    height:25px;
+
+    background:#222;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:25px 0;
+}
+
+.power-fill{
+
+    width:5%;
+
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ffd000,
+        #ff6500,
+        #ff0000
+    );
+
+    transition:
+    width 1s;
+
+    box-shadow:
+    0 0 20px #ff6500;
+}
+
+#scouter{
+
+    color:#aaa;
+
+    font-size:20px;
+
+    margin-top:20px;
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz{
+
+    max-width:700px;
+
+    margin:auto;
+}
+
+.question{
+
+    font-size:27px;
+
+    margin-bottom:25px;
+}
+
+.answer{
+
+    display:block;
+
+    width:100%;
+
+    padding:15px;
+
+    margin:10px 0;
+
+    background:#141414;
+
+    color:white;
+
+    border:
+    1px solid #292929;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.2s;
+}
+
+.answer:hover{
+
+    background:#ff6500;
+
+    transform:
+    translateX(5px);
+}
+
+.correct{
+
+    background:#087f42 !important;
+}
+
+.wrong{
+
+    background:#941f2f !important;
+}
+
+/* =========================
+   FINAL QUOTE
+========================= */
+
+.final{
+
+    text-align:center;
+
+    padding:
+    130px 20px;
+}
+
+.final h2{
+
+    font-size:
+    clamp(35px,6vw,70px);
+
+    background:
+    linear-gradient(
+        90deg,
+        white,
+        #ffd000,
+        #ff6500
+    );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+}
+
+.final p{
+
+    color:#777;
+
+    margin:
+    20px auto 30px;
+
+    font-size:18px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    padding:35px;
+
+    text-align:center;
+
+    border-top:
+    1px solid #202020;
+
+    color:#555;
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- NAVIGATION -->
+
+<!-- =========================
+     PARTICLES
+========================= -->
+
+<script>
+
+for(let i=0;i<35;i++){
+
+    const p=document.createElement("div");
+
+    p.className="particle";
+
+    p.style.left=
+    Math.random()*100+"%";
+
+    p.style.animationDuration=
+    (4+Math.random()*8)+"s";
+
+    p.style.animationDelay=
+    Math.random()*8+"s";
+
+    document.body.appendChild(p);
+}
+
+</script>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav>
 
-<button onclick="showPage('home')">
-🔥 Home
-</button>
+<div class="nav-logo">
+🔥 FIREFOX
+</div>
 
-<button onclick="showPage('about')">
-👤 About Me
-</button>
+<div class="nav-links">
 
-<button onclick="showPage('dragonball')">
-🐉 Dragon Ball
-</button>
+<a href="#home">HOME</a>
 
-<button onclick="showPage('power')">
-⚡ Power Lab
-</button>
+<a href="#history">HISTORY</a>
 
-<button onclick="showPage('quiz')">
-🧠 Quiz
-</button>
+<a href="#about">ABOUT ME</a>
+
+<a href="#power">POWER LAB</a>
+
+<a href="#quiz">QUIZ</a>
+
+</div>
 
 </nav>
 
 
-<!-- HOME -->
+<!-- =========================
+     HERO
+========================= -->
 
-<section id="home" class="page active">
+<section
+id="home"
+class="hero"
+>
 
-<div class="hero">
+<div class="hero-content">
 
-<div>
-
-<div class="flame">
+<div class="fire">
 🔥
 </div>
 
-<h1 class="logo">
+<h1>
 FIREFOX
 </h1>
 
-<p class="subtitle">
-Welcome to my corner of the internet.
+<h2>
+MY DRAGON BALL JOURNEY
+</h2>
+
+<p>
+
+Yo! I'm Firefox. 🔥
+
+Welcome to my world —
+where anime, gaming,
+technology, creativity,
+and Dragon Ball collide.
+
+This isn't just a website.
+
+<strong>
+This is my story.
+</strong>
+
 </p>
 
-<div>
-
-<span class="tag">
-🔥 Anime Fan
-</span>
-
-<span class="tag">
-🐉 Dragon Ball
-</span>
-
-<span class="tag">
-💻 Tech
-</span>
-
-<span class="tag">
-⚡ Gamer
-</span>
+<a
+href="#history"
+class="btn"
+>
+🐉 START THE JOURNEY
+</a>
 
 </div>
 
-<br><br>
+</section>
 
-<button class="btn"
-onclick="showPage('power')">
 
-⚡ UNLOCK MY POWER
+<!-- =========================
+     HISTORY
+========================= -->
 
-</button>
+<section id="history">
+
+<h2 class="section-title">
+🐉 THE DRAGON BALL CHRONICLES
+</h2>
+
+<p class="section-subtitle">
+
+1986 → 2026
+
+From one small adventure
+to a legendary universe.
+
+</p>
+
+
+<div class="history">
+
+<div class="timeline">
+
+
+<!-- 1986 -->
+
+<div class="era">
+
+<div class="era-year">
+1986
+</div>
+
+<h3>
+🌟 THE BEGINNING
+</h3>
+
+<p>
+
+The Dragon Ball adventure
+begins.
+
+A young Goku with a tail,
+a strange girl named Bulma,
+and one crazy mission:
+
+<strong>
+find the seven Dragon Balls.
+</strong>
+
+And just like that...
+
+the legend was born.
+
+</p>
+
+<div class="power-text">
+Power Level: BEGINNER
+</div>
+
+</div>
+
+
+<!-- 1989 -->
+
+<div class="era">
+
+<div class="era-year">
+1989
+</div>
+
+<h3>
+⚡ DRAGON BALL Z
+</h3>
+
+<p>
+
+BOOM!
+
+The story gets bigger.
+
+Goku discovers that he's
+actually a Saiyan.
+
+The battles become insane,
+the Z Fighters assemble,
+and enemies appear who make
+the old villains look tiny.
+
+</p>
+
+<div class="power-text">
+Power Level: SAIYAN
+</div>
+
+</div>
+
+
+<!-- 1992 -->
+
+<div class="era">
+
+<div class="era-year">
+1992
+</div>
+
+<h3>
+🔥 SUPER SAIYAN
+</h3>
+
+<p>
+
+Then came the moment
+everyone remembers.
+
+Goku reaches a legendary
+new transformation.
+
+Golden hair.
+
+Golden aura.
+
+And a power level that
+changes everything.
+
+<strong>
+SUPER SAIYAN.
+</strong>
+
+</p>
+
+<div class="power-text">
+Power Level: 9000+
+</div>
+
+</div>
+
+
+<!-- 1996 -->
+
+<div class="era">
+
+<div class="era-year">
+1996
+</div>
+
+<h3>
+💥 DRAGON BALL GT
+</h3>
+
+<p>
+
+The adventure continues
+into a new era.
+
+Goku becomes a kid again,
+new enemies appear,
+and Super Saiyan 4 enters
+the battlefield.
+
+Different story.
+
+Same legendary energy.
+
+</p>
+
+<div class="power-text">
+Power Level: SSJ4
+</div>
+
+</div>
+
+
+<!-- 2003 -->
+
+<div class="era">
+
+<div class="era-year">
+2003–2013
+</div>
+
+<h3>
+🎬 THE LEGEND LIVES ON
+</h3>
+
+<p>
+
+Dragon Ball continues
+through movies,
+games, re-releases,
+and a growing army of fans.
+
+The Dragon Ball world
+keeps getting bigger.
+
+The fandom?
+
+Even bigger.
+
+</p>
+
+<div class="power-text">
+Power Level: GLOBAL
+</div>
+
+</div>
+
+
+<!-- 2015 -->
+
+<div class="era">
+
+<div class="era-year">
+2015
+</div>
+
+<h3>
+🌌 DRAGON BALL SUPER
+</h3>
+
+<p>
+
+Goku and Vegeta return.
+
+But this time...
+
+they aren't just fighting
+strong enemies.
+
+They're fighting gods,
+destroyers, universes,
+and opponents who make
+the old power levels look
+like tutorial mode.
+
+</p>
+
+<div class="power-text">
+Power Level: GOD
+</div>
+
+</div>
+
+
+<!-- 2017 -->
+
+<div class="era">
+
+<div class="era-year">
+2017
+</div>
+
+<h3>
+🌌 ULTRA INSTINCT
+</h3>
+
+<p>
+
+The Tournament of Power
+pushes Goku further than
+ever.
+
+Then...
+
+his body begins moving
+without conscious thought.
+
+Silver hair.
+
+Impossible speed.
+
+A new level of power.
+
+<strong>
+Ultra Instinct.
+</strong>
+
+</p>
+
+<div class="power-text">
+Power Level: TRANSCENDED
+</div>
+
+</div>
+
+
+<!-- 2022 -->
+
+<div class="era">
+
+<div class="era-year">
+2022
+</div>
+
+<h3>
+💜 ULTRA EGO
+</h3>
+
+<p>
+
+Vegeta gets his answer.
+
+If Goku has Ultra Instinct...
+
+Vegeta chooses another path.
+
+Destruction.
+
+Power.
+
+Pride.
+
+<strong>
+Ultra Ego.
+</strong>
+
+The rivalry is still alive.
+
+</p>
+
+<div class="power-text">
+Power Level: DESTRUCTION
+</div>
+
+</div>
+
+
+<!-- 2024 -->
+
+<div class="era">
+
+<div class="era-year">
+2024
+</div>
+
+<h3>
+🐉 DAIMA
+</h3>
+
+<p>
+
+Another unexpected adventure
+begins.
+
+The Dragon Ball universe
+gets a new journey,
+new enemies,
+new mysteries,
+and a whole new way
+to experience Goku's world.
+
+</p>
+
+<div class="power-text">
+Power Level: MYSTERY
+</div>
+
+</div>
+
+
+<!-- 2026 -->
+
+<div class="era">
+
+<div class="era-year">
+2026
+</div>
+
+<h3>
+🔥 THE FUTURE
+</h3>
+
+<p>
+
+And now we reach...
+
+<strong>
+2026.
+</strong>
+
+But Dragon Ball doesn't
+feel finished.
+
+The universe is enormous.
+
+There are still worlds
+to explore.
+
+Enemies to discover.
+
+Transformations we haven't
+even imagined yet.
+
+The next chapter?
+
+<strong>
+That's the mystery.
+</strong>
+
+</p>
+
+<div class="power-text">
+Power Level: ????
+</div>
+
+</div>
+
 
 </div>
 
@@ -515,182 +1504,355 @@ onclick="showPage('power')">
 </section>
 
 
-<!-- ABOUT -->
+<!-- =========================
+     ABOUT FIREFOX
+========================= -->
 
-<section id="about" class="page">
+<section id="about">
 
-<h2>
-👤 About Firefox
+<h2 class="section-title">
+🔥 ABOUT FIREFOX
 </h2>
 
-<div class="grid">
-
-<div class="card">
-
-<h3>
-🔥 Who Am I?
-</h3>
-
-<p>
-I'm Firefox — curious, creative,
-and always looking for something
-cool to build or try.
+<p class="section-subtitle">
+The person behind the power level.
 </p>
 
+
+<div class="about-box">
+
+
+<!--
+PUT YOUR ORIGINAL AVATAR HERE:
+
+Rename the image:
+firefox-avatar.png
+
+Then replace the placeholder
+below with:
+
+<img class="avatar"
+src="firefox-avatar.png"
+alt="Firefox">
+-->
+
+<div class="avatar-placeholder">
+🔥
 </div>
 
 
-<div class="card">
-
-<h3>
-⚡ My Vibe
-</h3>
+<div class="about-text">
 
 <p>
-🔥 Energy<br>
-🐉 Dragon Ball<br>
-🎮 Gaming<br>
-💻 Technology<br>
-🚀 Experimenting
-</p>
 
-</div>
+Yo! I'm
+<strong>Firefox</strong>. 🦊🔥
 
-
-<div class="card">
-
-<h3>
-🌟 My Goal
-</h3>
-
-<p>
-Keep learning, keep creating,
-and make awesome things along
-the way.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- DRAGON BALL -->
-
-<section id="dragonball" class="page">
-
-<h2>
-🐉 Dragon Ball Zone
-</h2>
-
-<div class="grid">
-
-
-<div class="card character">
-
-<div class="character-icon">
-🥋
-</div>
-
-<h3>
-Goku
-</h3>
-
-<p>
-The legendary Saiyan who
-never stops pushing his limits.
 </p>
 
 <br>
 
-<button class="btn"
-onclick="transform('Goku')">
-
-🌌 Ultra Instinct
-
-</button>
-
-</div>
-
-
-<div class="card character">
-
-<div class="character-icon">
-👑
-</div>
-
-<h3>
-Vegeta
-</h3>
-
 <p>
-The proud Saiyan prince
-and Goku's greatest rival.
+
+I'm into
+<strong>Dragon Ball</strong>,
+anime, gaming, technology,
+coding, websites, AI,
+and creating cool things.
+
 </p>
 
 <br>
 
-<button class="btn"
-onclick="transform('Vegeta')">
+<p>
 
-💜 Ultra Ego
+I like taking an idea that
+sounds crazy and asking:
 
-</button>
+<strong>
+"Can I actually build this?"
+</strong>
 
-</div>
+</p>
 
-
-<div class="card character">
-
-<div class="character-icon">
-💥
-</div>
-
-<h3>
-Kamehameha
-</h3>
+<br>
 
 <p>
-A legendary energy attack.
-Charge your own power in
-the Power Lab.
+
+I'm also learning coding
+and experimenting with
+websites and technology.
+
+So this website isn't the
+final form.
+
+</p>
+
+<br>
+
+<p>
+
+<strong>
+It's the beginning of the
+Firefox transformation.
+</strong>
+
+🔥⚡🐉
+
 </p>
 
 </div>
 
 </div>
 
+</section>
 
-<div id="energy" class="energy">
-✨
+
+<!-- =========================
+     MY WORLD
+========================= -->
+
+<section>
+
+<h2 class="section-title">
+🌎 MY WORLD
+</h2>
+
+<p class="section-subtitle">
+Things that make Firefox... Firefox.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div class="card-icon">
+🐉
 </div>
 
-<h3 id="transformation"
-style="text-align:center">
-Choose a transformation...
+<h3>
+Dragon Ball
 </h3>
+
+<p>
+
+Epic battles.
+
+Transformations.
+
+Rivalries.
+
+And characters who somehow
+keep finding another level
+of power.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+🎮
+</div>
+
+<h3>
+Gaming
+</h3>
+
+<p>
+
+Challenges, adventures,
+competitive moments,
+and exploring new worlds.
+
+The goal:
+
+<strong>
+BEAT THE LEVEL.
+</strong>
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+💻
+</div>
+
+<h3>
+Technology
+</h3>
+
+<p>
+
+Coding, websites, AI,
+computers, experiments,
+and learning how technology
+works.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-icon">
+🚀
+</div>
+
+<h3>
+Creating
+</h3>
+
+<p>
+
+Turning ideas into actual
+things.
+
+A website today.
+
+Something even crazier
+tomorrow.
+
+</p>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- POWER LAB -->
+<!-- =========================
+     SAIYAN STATS
+========================= -->
 
-<section id="power" class="page">
+<section>
 
-<h2>
-⚡ Firefox Power Lab
+<h2 class="section-title">
+⚡ FIREFOX SAIYAN STATS
 </h2>
 
-<div class="card power-box">
+<div class="stats">
+
+
+<div class="stat">
+
+<div class="stat-title">
+<span>Motivation</span>
+<span>100%</span>
+</div>
+
+<div class="bar">
+<div
+class="fill"
+style="width:100%">
+</div>
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+<span>Creativity</span>
+<span>95%</span>
+</div>
+
+<div class="bar">
+<div
+class="fill"
+style="width:95%">
+</div>
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+<span>Gaming</span>
+<span>90%</span>
+</div>
+
+<div class="bar">
+<div
+class="fill"
+style="width:90%">
+</div>
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+<span>Coding</span>
+<span>85%</span>
+</div>
+
+<div class="bar">
+<div
+class="fill"
+style="width:85%">
+</div>
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+<span>Dragon Ball Knowledge</span>
+<span>9999+</span>
+</div>
+
+<div class="bar">
+<div
+class="fill"
+style="width:100%">
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     POWER LAB
+========================= -->
+
+<section id="power">
+
+<h2 class="section-title">
+⚡ POWER LAB
+</h2>
+
+<p class="section-subtitle">
+Let's see what the scouter says...
+</p>
+
+
+<div class="card power-lab">
 
 <h3>
 SCOUTER ONLINE
 </h3>
-
-<p>
-Let's see how powerful Firefox is...
-</p>
 
 <div
 id="powerNumber"
@@ -704,23 +1866,25 @@ class="power-number">
 class="btn"
 onclick="powerUp()">
 
-⚡ POWER UP!
+⚡ POWER UP
 
 </button>
+
 
 <div class="power-bar">
 
 <div
 id="powerFill"
 class="power-fill">
-
 </div>
 
 </div>
+
 
 <p id="scouter">
 
-Scouter: Standing by...
+Scouter:
+standing by...
 
 </p>
 
@@ -729,19 +1893,27 @@ Scouter: Standing by...
 </section>
 
 
-<!-- QUIZ -->
+<!-- =========================
+     QUIZ
+========================= -->
 
-<section id="quiz" class="page">
+<section id="quiz">
 
-<h2>
-🧠 Dragon Ball Quiz
+<h2 class="section-title">
+🧠 DRAGON BALL QUIZ
 </h2>
+
+<p class="section-subtitle">
+Only true Z Warriors survive this test.
+</p>
+
 
 <div class="card quiz">
 
+
 <div class="question">
 
-Who is Goku's biggest Saiyan rival?
+Who is Goku's legendary Saiyan rival?
 
 </div>
 
@@ -750,7 +1922,7 @@ Who is Goku's biggest Saiyan rival?
 class="answer"
 onclick="answer(this,false)">
 
-Piccolo
+A. Krillin
 
 </button>
 
@@ -759,7 +1931,7 @@ Piccolo
 class="answer"
 onclick="answer(this,true)">
 
-Vegeta
+B. Vegeta
 
 </button>
 
@@ -768,7 +1940,16 @@ Vegeta
 class="answer"
 onclick="answer(this,false)">
 
-Krillin
+C. Yamcha
+
+</button>
+
+
+<button
+class="answer"
+onclick="answer(this,false)">
+
+D. Mr. Satan
 
 </button>
 
@@ -776,8 +1957,8 @@ Krillin
 <p
 id="quizResult"
 style="
-font-size:22px;
 margin-top:20px;
+font-size:20px;
 ">
 
 </p>
@@ -787,159 +1968,249 @@ margin-top:20px;
 </section>
 
 
+<!-- =========================
+     FINAL
+========================= -->
+
+<section class="final">
+
+<h2>
+THE FIREFOX JOURNEY
+IS JUST BEGINNING.
+</h2>
+
+<p>
+
+Every Saiyan starts somewhere.
+
+Every creator starts with an idea.
+
+Every legendary journey
+has a first step.
+
+</p>
+
+<a
+href="#home"
+class="btn">
+
+🔥 BACK TO TOP
+
+</a>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
-🔥 Firefox Website • Dragon Ball Power Zone 🐉
+© 2026 Firefox 🦊🔥
+
+<br><br>
+
+Made with imagination,
+technology, and Dragon Ball energy.
+
+<br><br>
+
+<strong>
+THIS SITE IS 100% FIREFOX.
+</strong>
 
 </footer>
 
 
 <script>
 
-/* PAGE SWITCHING */
+/* =========================
+   POWER SYSTEM
+========================= */
 
-function showPage(page) {
-
-    document
-        .querySelectorAll(".page")
-        .forEach(section => {
-
-            section.classList.remove("active");
-
-        });
-
-    document
-        .getElementById(page)
-        .classList.add("active");
-
-    window.scrollTo(0,0);
-}
-
-
-/* TRANSFORMATIONS */
-
-function transform(character) {
-
-    const energy =
-        document.getElementById("energy");
-
-    const text =
-        document.getElementById("transformation");
-
-    energy.classList.add("ultra");
-
-    if (character === "Goku") {
-
-        energy.innerHTML = "🌌✨";
-
-        text.innerHTML =
-            "🌌 GOKU HAS ENTERED ULTRA INSTINCT!";
-
-    }
-
-    else {
-
-        energy.innerHTML = "💜💥";
-
-        text.innerHTML =
-            "💜 VEGETA HAS ENTERED ULTRA EGO!";
-
-    }
-
-}
-
-
-/* POWER LEVEL */
-
-function powerUp() {
+function powerUp(){
 
     const power =
-        Math.floor(
-            Math.random() * 900000
-        ) + 9001;
+    Math.floor(
+        Math.random()*999999
+    ) + 9001;
 
     document
-        .getElementById("powerNumber")
-        .innerText =
-        power.toLocaleString();
+    .getElementById("powerNumber")
+    .innerText =
+    power.toLocaleString();
 
 
-    let percent =
-        Math.min(
-            100,
-            Math.floor(power / 10000)
-        );
+    const percentage =
+    Math.min(
+        100,
+        Math.floor(power/10000)
+    );
+
 
     document
-        .getElementById("powerFill")
-        .style.width =
-        percent + "%";
+    .getElementById("powerFill")
+    .style.width =
+    percentage+"%";
 
 
     const scouter =
-        document.getElementById("scouter");
+    document.getElementById("scouter");
 
 
-    if (power > 800000) {
+    if(power > 900000){
 
         scouter.innerText =
-            "🚨 SCOUTER: IT'S OVER 9000!!!";
+        "🚨 SCOUTER ERROR: POWER LEVEL TOO HIGH!!!";
 
     }
 
-    else if (power > 400000) {
+    else if(power > 600000){
 
         scouter.innerText =
-            "⚡ SCOUTER: EXTREME POWER DETECTED!";
+        "🔥 SCOUTER: LEGENDARY POWER DETECTED!";
 
     }
 
-    else {
+    else if(power > 300000){
 
         scouter.innerText =
-            "🔥 SCOUTER: POWER LEVEL RISING!";
+        "⚡ SCOUTER: EXTREME POWER!";
+
+    }
+
+    else{
+
+        scouter.innerText =
+        "💥 SCOUTER: POWER LEVEL RISING!";
 
     }
 
 }
 
 
-/* QUIZ */
+/* =========================
+   QUIZ
+========================= */
 
-function answer(button, correct) {
+function answer(button,correct){
 
     document
-        .querySelectorAll(".answer")
-        .forEach(
-            b => b.disabled = true
-        );
+    .querySelectorAll(".answer")
+    .forEach(
+        b => b.disabled=true
+    );
 
 
-    if (correct) {
+    const result =
+    document
+    .getElementById("quizResult");
 
-        button.classList.add("correct");
 
-        document
-            .getElementById("quizResult")
-            .innerText =
-            "🔥 CORRECT! You know your Dragon Ball!";
+    if(correct){
+
+        button
+        .classList
+        .add("correct");
+
+        result.innerText =
+        "🔥 CORRECT! You have Saiyan potential!";
 
     }
 
-    else {
+    else{
 
-        button.classList.add("wrong");
+        button
+        .classList
+        .add("wrong");
 
-        document
-            .getElementById("quizResult")
-            .innerText =
-            "❌ Not quite! The answer was Vegeta.";
+        result.innerText =
+        "❌ Wrong! Vegeta was the answer.";
 
     }
 
 }
 
+
+/* =========================
+   AVATAR AUTO-SWITCH
+========================= */
+
+const avatar =
+document.querySelector(".avatar-placeholder");
+
+const savedAvatar =
+new Image();
+
+savedAvatar.src =
+"firefox-avatar.png";
+
+savedAvatar.onload =
+function(){
+
+    avatar.outerHTML =
+    '<img class="avatar" src="firefox-avatar.png" alt="Firefox avatar">';
+
+};
+
+
+/* =========================
+   EASTER EGG
+========================= */
+
+let konami=[];
+
+document.addEventListener(
+"keydown",
+function(e){
+
+    konami.push(e.key.toLowerCase());
+
+    konami=
+    konami.slice(-6);
+
+
+    if(
+        konami.join("") ===
+        "gokuss"
+    ){
+
+        document.body.style
+        .animation =
+        "powerFlash .3s";
+
+        alert(
+        "🔥 GOKU POWER MODE ACTIVATED!"
+        );
+
+    }
+
+});
+
 </script>
+
+
+<style>
+
+@keyframes powerFlash{
+
+    0%{
+        filter:brightness(1);
+    }
+
+    50%{
+        filter:brightness(2);
+    }
+
+    100%{
+        filter:brightness(1);
+    }
+
+}
+
+</style>
+
 
 </body>
 </html>
